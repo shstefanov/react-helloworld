@@ -25,7 +25,7 @@
         "build": "esbuild $(find ./src -name *.entry.*) $(find ./src -name *.html) $(npm run esbuild-loaders | tail -n 1) --minify --bundle --outdir=./public",
         "esbuild-loaders": "export L=--loader:; export D=dataurl; echo $L.svg=$D $L.png=$D $L.jpg=$D $L.cur=$D $L.ani=$D $L.ttf=$D $L.html=copy",
         "links": "npm link $(cat links.txt)",
-        "prestart": "rm ./src/node_modules || echo skip... && ln -s $(pwd)/src ./src/node_modules && npm run show-entries",
+        "prestart": "npm run show-entries",
         "servor": "servor ./public index.html 3000 --static",
         "show-entries": "echo Entrypoints: && find ./src -name *.entry.*",
         "start": "esbuild $(find ./src -name *.entry.*) $(find ./src -name *.html) $(npm run esbuild-loaders | tail -n 1) --watch  --bundle --sourcemap --outdir=./public | npm run servor",
