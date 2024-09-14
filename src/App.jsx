@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React                  from "react";
+import { createStore }        from 'redux';
+import { Provider }           from 'react-redux';              // Redux store provider
+import combineSectionReducers from "combine-section-reducers"; // Combines state branches into single reducer
 
+import TestComponent from "components/TestComponent.component.jsx";
+import * as reducers from "./store";
 
-
+const store = createStore(combineSectionReducers(reducers));
 
 export default () => {
-  const [ clicks, setClicks ] = useState(0);
-  return <h1 onClick={ e => setClicks(clicks + 1)} >
-    Hello, click me {clicks}
-  </h1>;
+  return <Provider store={store}>
+    <TestComponent />
+  </Provider>;
 }
